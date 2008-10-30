@@ -1,0 +1,30 @@
+--- origsrc/mpeg_encode/Makefile	2008-09-05 15:33:58.921789800 -0500
++++ src/mpeg_encode/Makefile	2008-10-30 02:43:00.258274000 -0500
+@@ -204,7 +204,7 @@
+ 
+ mpeg_encode: $(MP_ALL_OBJS) $(JPEG_LIB)
+ 	$(PURIFY) $(CC) $(CFLAGS) -o $@ $(MP_ALL_OBJS) $(LIBDIRS) $(LIBS)
+-	strip mpeg_encode
++	-strip mpeg_encode
+ 
+ profile: $(MP_ALL_OBJS)
+ 	$(PURIFY) $(CC) -Bstatic -pg $(CFLAGS) -o $@ $(MP_ALL_OBJS) $(LIBDIRS) $(LIBS)
+--- origsrc/mpeg_encode/jpeg.c	2008-09-05 15:33:58.937414800 -0500
++++ src/mpeg_encode/jpeg.c	2008-10-30 02:40:53.682579300 -0500
+@@ -80,7 +80,6 @@
+ /* make it happier.... */
+ #undef DCTSIZE2
+ #include "jpeglib.h"
+-#include "jpegint.h"
+ 
+ 
+ #define HEADER_SIZE 607   /*JFIF header size used on output images*/
+@@ -514,7 +514,7 @@
+   max_v_samp = (temp_v<v_samp[2]) ? v_samp[2]:temp_v;
+   
+   /* Make an 8-row-high sample array that will go away when done with image */
+-#ifdef JPEG4
++#if defined(JPEG4) || defined(__CYGWIN__)
+   buffer_height = 8;  /* could be 2, 4,8 rows high */
+ #else
+   buffer_height = cinfo.max_v_samp_factor * cinfo.min_DCT_scaled_size;

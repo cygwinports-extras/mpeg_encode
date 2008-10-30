@@ -1,0 +1,77 @@
+mpeg_encode
+-------------------------------------------
+This directory contains the freely distributed Berkeley MPEG-1 Video
+Encoder and conversion utilities.  The encoder implements the standard 
+described in the ISO/IEC International Standard 11172-2.
+
+Runtime requirements:
+  cygwin-1.5.15-15
+  libjpeg62-6b-12
+
+Build requirements:
+  binutils-20080624-2
+  cygport-0.4.2-1
+  gcc-core-3.4.4-3
+  make-3.81-1
+  sed-4.1.5-2
+
+Canonical homepage:
+  http://bmrc.berkeley.edu/research/mpeg/mpeg_encode.html
+
+Canonical download:
+  ftp://mm-ftp.cs.berkeley.edu/pub/multimedia/mpeg/encode/
+
+-------------------------------------------
+
+Build instructions:
+  unpack mpeg_encode-1.5b-X-src.tar.bz2
+    if you use setup to install this src package, it will be
+	 unpacked under /usr/src automatically
+  cd /usr/src
+  cygport ./mpeg_encode-1.5b-X.cygport all
+
+This will create:
+  /usr/src/mpeg_encode-1.5b-X-src.tar.bz2
+  /usr/src/mpeg_encode-1.5b-X.tar.bz2
+
+-------------------------------------------
+
+Files included in the binary package:
+
+  /usr/bin/eyuvtojpeg.exe
+  /usr/bin/jmovie2jpeg.exe
+  /usr/bin/movieToVid.exe
+  /usr/bin/mpeg_demux.exe
+  /usr/bin/mpeg_encode.exe
+  /usr/share/doc/mpeg_encode-1.5b/ANNOUNCE
+  /usr/share/doc/mpeg_encode-1.5b/BUGS
+  /usr/share/doc/mpeg_encode-1.5b/Changes
+  /usr/share/doc/mpeg_encode-1.5b/COPYRIGHT
+  /usr/share/doc/mpeg_encode-1.5b/EXTENSIONS
+  /usr/share/doc/mpeg_encode-1.5b/INPUT.FORMAT
+  /usr/share/doc/mpeg_encode-1.5b/INSTALL
+  /usr/share/doc/mpeg_encode-1.5b/NOTES
+  /usr/share/doc/mpeg_encode-1.5b/README
+  /usr/share/doc/mpeg_encode-1.5b/README.convert
+  /usr/share/doc/mpeg_encode-1.5b/README.mtv
+  /usr/share/doc/mpeg_encode-1.5b/TODO
+  /usr/share/man/man1/mpeg_encode.1.gz
+
+------------------
+
+Port Notes:
+
+----- version 1.5b-3 -----
+Patches from Gentoo to use system jpeg and other issues.
+eyuvtoppm/ppmtoeyuv now provided by netpbm.
+
+----- version 1.5b-2 -----
+Includes patch for CAN-2005-3115 from the Gentoo Security Team.
+
+----- version 1.5b-1 -----
+Initial release for Cygwin.
+Includes patches from the Gentoo Linux ebuild.
+
+
+Cygwin port maintained by:
+http://cygwinports.dotsrc.org/

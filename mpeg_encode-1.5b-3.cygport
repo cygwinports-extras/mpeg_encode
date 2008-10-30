@@ -1,0 +1,35 @@
+DESCRIPTION="MPEG video tools"
+HOMEPAGE="http://bmrc.berkeley.edu/frame/research/mpeg/mpeg_encode.html"
+SRC_URI="http://bmrc.berkeley.edu/ftp/pub/multimedia/mpeg/encode/${P}-src.tar.gz"
+PATCH_URI="
+	mirror://portage/media-video/mpeg-tools/files/mpeg-tools-${PV}-build.patch
+	mirror://portage/media-video/mpeg-tools/files/mpeg-tools-${PV}-64bit_fixes.patch
+	mirror://portage/media-video/mpeg-tools/files/mpeg-tools-${PV}-system-jpeg.patch
+	mirror://portage/media-video/mpeg-tools/files/mpeg-tools-${PV}-tempfile-convert.patch
+	mirror://portage/media-video/mpeg-tools/files/mpeg-tools-${PV}-tempfile-mpeg-encode.patch
+	1.5b-misc.patch
+"
+SRC_DIR="."
+
+DIFF_EXCLUDES="jpeg"
+
+src_compile() {
+	lndirs
+	cd ${B}
+	rm -fr ${PN}/jpeg/
+	cygmake -C mpeg_encode
+	cygmake -C convert
+	cygmake -C convert/mtv
+}
+
+src_install() {
+	cd ${B}/mpeg_encode
+	dobin mpeg_encode.exe
+	doman docs/mpeg_encode.1
+	dodoc BUGS CHANGES README TODO docs/EXTENSIONS docs/INPUT.FORMAT
+
+	cd ${B}/convert
+	dobin *.exe mtv/*.exe
+	newdoc README README.convert
+	newdoc mtv/README README.mtv
+}
