@@ -1,5 +1,5 @@
 category: Video
-requires: cygwin libjpeg62
+requires: libjpeg62
 sdesc: "Berkeley MPEG-1 Video Encoder and conversion utilities"
 ldesc: "This directory contains the freely distributed Berkeley MPEG-1 Video
 Encoder and conversion utilities.  The encoder implements the standard
